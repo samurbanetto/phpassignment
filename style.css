@@ -18,8 +18,26 @@ body {
     height: 99.3vh;
 }
 
-.right table {
-    margin: 10%;
+.button {
+    background-color: darkred;
+    color: white;
+    padding: 15px;
+}
+
+table {
+    margin-left: 15vw;
+    margin-right: 15vw;
     width: 70vw;
-    height: 99.3vh;
+    background-color: gray;
+    color: black;
+}
+
+table tr:first-child {
+    text-decoration: none;
+    background-color: black;
+    color: #e0ffff;
+}
+
+table tr:nth-child(odd) {
+    background: var(lightgray);
 }

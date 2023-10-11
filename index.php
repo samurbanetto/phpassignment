@@ -12,7 +12,7 @@
     
 <?php
     error_reporting(0)
-    $path = pg_connect("host=localhost dbname=inventory user=postgres password=postgres")
+    $path = pg_connect("host=localhost dbname=inventory user=admin password=admin")
     if (!$dbconn = pg_connect($path)) die('Could not connect');
 
     if (!empty($_POST['remove'])) {
@@ -21,14 +21,7 @@
     }
 ?>
 
-    <div class="left">
-        <div class="inputs">
-            <h1>inputs</h1>
-
-        </div>
-    </div>
-
-    <div class="right">
+    <div class="container">
         <h1>ID Sort</h1>
         <table>
             <tr>
@@ -51,13 +44,14 @@
                 <td>
                     <form action='./index.php' method='post' class='remove-form'>
                         <input type='hidden' id='inputHidden' name='remover' value='$row[0]'>
-                        <button type='submit' class='button'>❌</button>
+                        <button type='submit' class='button'>X</button>
                     </form>
                 </td>
             </tr>"
         }
         ?>
         </table>
+        <a href="./insert.php" class="button">Add New Items</a>
         <h1>Highest Price sort</h1>
         <table>
             <tr>
