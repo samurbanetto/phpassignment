@@ -1,12 +1,12 @@
 create database inventory;
 
-create table Items {
+create table Items (
     item_id serial primary key,
     item_name varchar(100) not null,
     item_format varchar(10) not null,
     item_qnt int not null,
     item_price numeric(6,2)
-}
+)
 
 insert into Items (item_name, item_qnt, item_price) values
     ('David Bowie - The Rise And Fall Of Ziggy Stardust And The Spiders From Mars (2012 Remaster)', 'CD', 4, 14.99), 

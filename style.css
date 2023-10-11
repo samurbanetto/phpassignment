@@ -41,3 +41,7 @@ table tr:first-child {
 table tr:nth-child(odd) {
     background: var(lightgray);
 }
+
+h1 {
+    margin-left: 40%;
+}

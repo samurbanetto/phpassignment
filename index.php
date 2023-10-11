@@ -11,13 +11,13 @@
 <body>
     
 <?php
-    error_reporting(0)
+    error_reporting(0);
     $path = pg_connect("host=localhost dbname=inventory user=admin password=admin")
     if (!$dbconn = pg_connect($path)) die('Could not connect');
 
     if (!empty($_POST['remove'])) {
         $remove = $_POST['remove'];
-        pg_query($dbconn, "DELETE FROM Items WHERE item_id = $remover");
+        pg_query($dbconn, "DELETE FROM Items WHERE item_id = $remove");
     }
 ?>
 
@@ -43,11 +43,11 @@
                 <td>R$$row[3]</td>
                 <td>
                     <form action='./index.php' method='post' class='remove-form'>
-                        <input type='hidden' id='inputHidden' name='remover' value='$row[0]'>
+                        <input type='hidden' id='inputHidden' name='remove' value='$row[0]'>
                         <button type='submit' class='button'>X</button>
                     </form>
                 </td>
-            </tr>"
+            </tr>;"
         }
         ?>
         </table>
@@ -57,8 +57,10 @@
             <tr>
                 <th>id</th>
                 <th>item</th>
-                <th>quantidade</th>
-                <th>preço</th>
+                <th>format</th>
+                <th>qnt</th>
+                <th>price</th>
+                <th>delete</th>
             </tr>
             <?php
                 $result = pg_query($dbconn, "SELECT item_id, item_name, item_format, item_qnt, item_price FROM Items WHERE item_price = (SELECT MAX(item_price) FROM Items)");
@@ -77,12 +79,29 @@
         <table>
                 <tr>
                     <th>id</th>
-                    <th>item</th>
-                    <th>quantidade</th>
-                    <th>preço</th>
+                <th>item</th>
+                <th>format</th>
+                <th>qnt</th>
+                <th>price</th>
+                <th>delete</th>
                 </tr>
                 <?php
-                    $result = pg_query($dbConnection, "SELECT item_id, item_name, item_format, item_qnt, item_price FROM Itens WHERE preco_item = (SELECT MIN(item_price) FROM Items)");
+                    $result = pg_query($dbConnection, "SELECT item_id, item_name, item_format, item_qnt, item_price FROM Itens WHERE item_price = (SELECT MIN(item_price) FROM Items)");
+                    while ($row = pg_fetch_row($result)) {
+                        echo "
+                        <tr>
+                            <td>$row[0]</td>
+                            <td>$row[1]</td>
+                            <td>$row[2]</td>
+                            <td>R$$row[3]</td>
+                        </tr>";
+                    }
+                ?>
+            </table>
+            <h1>No stock:</h1>
+            <table>
+                <?php
+                    $result = pg_query($dbConnection, "SELECT item_id, item_name, item_format, item_qnt, item_price FROM Items WHERE item_qnt = 0");
                     while ($row = pg_fetch_row($result)) {
                         echo "
                         <tr>

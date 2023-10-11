@@ -11,8 +11,8 @@
 <body>
     
 <?php
-    error_reporting(0)
-    $path = pg_connect("host=localhost dbname=inventory user=admin password=admin")
+    error_reporting(0);
+    $path = "host=localhost dbname=inventory user=admin password=admin"
     if (!$dbconn = pg_connect($path)) die('Could not connect');
 ?>
 
@@ -32,7 +32,7 @@
                     <button type="submit" name="add" class="button">post</button>
                 </div>
                 <?php
-                    pg_query($dbConnection, "INSERT INTO Items (item_name, item_format, item_qnt, item_price) VALUES ('".$_POST['item']."','".$_POST['fornat']."',".$_POST['qnt'].",".$_POST['price'].");");
+                    pg_query($dbconn, "INSERT INTO Items (item_name, item_format, item_qnt, item_price) VALUES ('".$_POST['item']."','".$_POST['format']."',".$_POST['qnt'].",".$_POST['price'].");");
                 ?>
             </form>
     </div>
