@@ -12,7 +12,7 @@
     
 <?php
     error_reporting(0);
-    $path = pg_connect("host=localhost dbname=inventory user=admin password=admin");
+    $path = "host=localhost dbname=inventory user=admin password=admin";
     if (!$dbconn = pg_connect($path)) die('Could not connect');
 
     if (!empty($_POST['remove'])) {
